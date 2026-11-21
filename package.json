@@ -1,0 +1,14 @@
+{
+  "name": "ghost-code-agent-guard",
+  "version": "0.1.0",
+  "description": "Approval, replay and privacy guard for Ghost Code agent tool calls. Patterns adapted from Nova (supercli) by Yash Dewasthale, MIT License.",
+  "type": "module",
+  "main": "src/agent-guard.js",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
