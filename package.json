@@ -1,0 +1,11 @@
+{
+  "name": "ghost-agent-guard",
+  "version": "0.1.0",
+  "description": "Standalone approval, privacy and replay safety for coding-agent hosts",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "exports": { ".": "./src/agent-guard.js", "./privacy": "./src/privacy.js", "./card": "./src/approval-card.js" },
+  "scripts": { "test": "node --test", "check": "node --check src/agent-guard.js && node --check src/privacy.js && node --check src/approval-card.js && node --test" },
+  "license": "MIT"
+}
