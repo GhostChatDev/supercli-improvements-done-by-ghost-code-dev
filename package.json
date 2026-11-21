@@ -1,0 +1,19 @@
+{
+  "name": "agent-guard",
+  "version": "0.1.0",
+  "description": "Approval gates, replay receipts and secret redaction for coding agents.",
+  "type": "module",
+  "main": "src/agent-guard.js",
+  "exports": {
+    ".": "./src/agent-guard.js",
+    "./privacy": "./src/privacy.js",
+    "./card": "./src/approval-card.js"
+  },
+  "scripts": {
+    "test": "node --test tests/"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
