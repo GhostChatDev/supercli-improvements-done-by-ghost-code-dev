@@ -1,6 +1,27 @@
 # supercli-improvements-done-by-ghost-code-dev
 supercli credits to https://github.com/yashdev9274/supercli.. great tech..
 
+## Agent Guard (what is built here)
+
+A small, dependency-free Node library (`src/`) with the approval, replay and privacy rules below, and tests (`tests/guard.test.js`). Run: `npm test` (Node 20+).
+
+Patterns adapted from Nova (supercli) by Yash Dewasthale, MIT License. Copyright (c) 2026 Yash Dewasthale. This reimplements the ideas; it does not copy their source files.
+
+- `src/privacy.js`: stable SHA-256 action hash (sorted keys) and secret redaction.
+- `src/agent-guard.js`: `createGuard()` with `registerTool`, `callTool`, `decide`, `getApproval`, `handoverNote`, `recordTask`, `metrics`.
+- `src/approval-card.js`: a renderer for every interaction kind, plus `missingRenderers()`.
+
+### How to plug it into Ghost Code
+
+Route every tool call (including MCP connector tools) through `guard.callTool(ctx, name, args)` with `ctx = { userId, sessionId, roundId, unattended }` from the server's own signed-in session. Show `approval` results with `renderInteraction()`, and send Approve/Deny to `guard.decide(ctx, id, decision, hash)`. Give commit and publish tools a `verify(args)` so an unknown outcome is checked, not redone. Replace `MemoryStore` with a database store that has the same four methods.
+
+### Limits
+
+- This repository is not Ghost Code's source: nothing here is wired into the live product yet.
+- `MemoryStore` is in memory only; receipts and approvals need a real database to survive a restart.
+- No success rate is claimed; `metrics()` only counts.
+- Redaction is pattern-based and can miss unusual secret formats.
+
 # Ghost Code build prompt — approval, replay, and privacy
 
 Paste this whole file into a new Ghost Code session. Select Ghost Code's own repository first. Do not select the public Nova / supercli fork.
@@ -114,3 +135,6 @@ Unknown tool asks before it runs; deny does not fail the task or charge; unatten
 ## How to work
 
 Read the real files first. Implement in the order 1, 2, 3, 4, 5, 6. Add the test with each item. Commit to the ghost-code branch only, in small commits, and do not touch main. If a check fails, fix the cause. Do not delete or weaken tests. If you cannot find the choke point for an item, say "no matches" for that item and leave it unbuilt rather than guessing a file.
+
+---
+<img src="https://ghostchat.tech/icons/ghost-code-dev.png" width="20" height="20" alt="" align="top"> Built by [Ghost Code Dev](https://ghostchat.tech)

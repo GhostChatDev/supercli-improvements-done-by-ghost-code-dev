@@ -5,7 +5,7 @@
   "type": "module",
   "main": "src/agent-guard.js",
   "scripts": {
-    "test": "node --test tests/"
+    "test": "node --test tests/*.test.js"
   },
   "engines": {
     "node": ">=20"
